@@ -1,7 +1,7 @@
 import bluetooth
 
 def get_connected_devices():
-    nearby_devices = bluetooth.discover_devices(lookup_names=True, device_id=-1, lookup_oui=True, device_class=0, duration=8, lookup_oui_in_name=True, lookup_oui_in_class=True)
+    nearby_devices = bluetooth.discover_devices(lookup_names=True, device_id=-1, duration=8)
     
     connected_devices = []
     
