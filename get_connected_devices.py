@@ -5,10 +5,8 @@ def get_connected_devices():
     
     connected_devices = []
     
-    for addr, name, _ in nearby_devices:
-        services = bluetooth.find_service(address=addr)
-        if services:
-            connected_devices.append({"address": addr, "name": name, "services": services})
+    for addr, name, in nearby_devices:
+        connected_devices.append({"address": addr, "name": name})
     
     return connected_devices
 
