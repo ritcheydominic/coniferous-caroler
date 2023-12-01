@@ -1,8 +1,16 @@
 import random
 from time import sleep
-import bluetooth
+import pydbus
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+
+# Bluetooth Setup
+bus = pydbus.SystemBus()
+
+adapter = bus.get('org.bluez', '/org/bluez/hci0')
+mngr = bus.get('org.bluez', '/')
+
+# Spotipy Setup
 cid = '500d52c25b89477dae46b95e7391bab5'
 secret = 'ec17f112c45a42b690b17a6a5c8a2aca'
 
@@ -26,7 +34,14 @@ for device in devices['devices']:
 
 
 def get_connected_devices():
-    return bluetooth.discover_devices(lookup_names=False, lookup_class=False, device_id=-1, duration=8)
+    connected_devices = []
+    mngd_objs = mngr.GetManagedObjects()
+    for path in mngd_objs:
+        con_state = mngd_objs[path].get('org.bluez.Device1', {}).get('Connected', False)
+        if con_state:
+            addr = mngd_objs[path].get('org.bluez.Device1', {}).get('Address')
+            connected_devices.append(addr)
+    return connected_devices
 
 def update_playback(devices):
     track_uris = []
@@ -88,7 +103,7 @@ def monitor_devices():
                 # no devices connected, stop playback
                 sp.pause_playback(device_id=device_id)
         
-        sleep(5)
+        sleep(15)
 
 
 if __name__ == "__main__":
