@@ -16,7 +16,7 @@ secret = 'ec17f112c45a42b690b17a6a5c8a2aca'
 
 device_to_playlist = {
     "B0:4A:6A:98:EB:10": "https://open.spotify.com/playlist/72dZDJTedH4uwVuy7Dlpva?si=ab186ebe6f8c45d9",
-    "testuser2": "https://open.spotify.com/playlist/5bK5b3kFIGRoX3hNCkmKSd?si=e6535dfe594649db",
+    "C4:7F:36:F3:27:D2": "https://open.spotify.com/playlist/5bK5b3kFIGRoX3hNCkmKSd?si=e6535dfe594649db",
 }
 # scope to see avaiable devices and manage playback
 scope = 'playlist-modify-public playlist-modify-private playlist-read-private user-top-read user-read-playback-state user-modify-playback-state user-read-currently-playing'
