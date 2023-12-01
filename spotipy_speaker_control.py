@@ -20,7 +20,7 @@ for device in devices['devices']:
         break
 
 device_to_playlist = {
-    "drew": "https://open.spotify.com/playlist/72dZDJTedH4uwVuy7Dlpva?si=ab186ebe6f8c45d9",
+    "B0:4A:6A:98:EB:10": "https://open.spotify.com/playlist/72dZDJTedH4uwVuy7Dlpva?si=ab186ebe6f8c45d9",
     "testuser2": "https://open.spotify.com/playlist/5bK5b3kFIGRoX3hNCkmKSd?si=e6535dfe594649db",
 }
 

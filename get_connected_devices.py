@@ -17,10 +17,6 @@ if __name__ == "__main__":
         print("Connected Bluetooth Devices:")
         for device in connected_devices:
             print(f"Address: {device['address']}, Name: {device['name']}")
-            if device['services']:
-                print("Services:")
-                for service in device['services']:
-                    print(f"  - {service['name']} ({service['host']}:{service['port']})")
             print("\n")
     else:
         print("No connected Bluetooth devices found.")
