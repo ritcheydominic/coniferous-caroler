@@ -13,7 +13,7 @@ device_to_playlist = {
 # scope to see avaiable devices and manage playback
 scope = 'playlist-modify-public playlist-modify-private playlist-read-private user-top-read user-read-playback-state user-modify-playback-state user-read-currently-playing'
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope, client_id=cid, client_secret=secret, redirect_uri='http://localhost:8888/callback'))
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope, client_id=cid, client_secret=secret, redirect_uri='http://localhost:8888/callback', open_browser=False))
 
 # Look for a device called Spotifyd@coniferouscaroler
 device_name = 'Spotifyd@coniferouscaroler'
@@ -64,6 +64,7 @@ def update_playback(devices):
 def monitor_devices():
     registered_connected_devices = []
     while True:
+        print("Scanning Bluetooth...")
         connected_devices = get_connected_devices()
         old_registered_devices_count = len(registered_connected_devices)
         registered_connected_devices = [dev for dev in connected_devices if dev in device_to_playlist.keys()]
@@ -87,7 +88,7 @@ def monitor_devices():
                 # no devices connected, stop playback
                 sp.pause_playback(device_id=device_id)
         
-        sleep(30)
+        sleep(5)
 
 
 if __name__ == "__main__":
