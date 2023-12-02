@@ -68,4 +68,8 @@ def run():
             led_strip.show()
 
 if __name__ == "__main__":
-    run()
+    try:
+        run()
+    except KeyboardInterrupt:
+        led_strip.fill((0, 0, 0))
+        os._exit(130)
