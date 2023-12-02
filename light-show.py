@@ -50,13 +50,10 @@ def run():
             source = open(RAW_TARGET, "rb")
         else:
             source = process.stdout
-        print("DEBUG 1")
         while True:
             data = source.read(chunk)
             if len(data) < chunk:
-                print("DEBUG 2")
                 break
-            print("DEBUG 3")
             # sample_list = [i for i in struct.unpack(fmt, data)]  # raw values without norming
             sample_list = [i / bytenorm for i in struct.unpack(fmt, data)]
             # print(sample_list)
