@@ -70,6 +70,7 @@ def run():
 if __name__ == "__main__":
     try:
         run()
-    except KeyboardInterrupt:
+    except:
         led_strip.fill((0, 0, 0))
+        led_strip.show()
         os._exit(130)
