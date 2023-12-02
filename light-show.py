@@ -30,7 +30,7 @@ bit_format = %s
 config = conpat % (BARS_NUMBER, RAW_TARGET, OUTPUT_BIT_FORMAT)
 bytetype, bytesize, bytenorm = ("H", 2, 65535) if OUTPUT_BIT_FORMAT == "16bit" else ("B", 1, 255)
 
-led_strip = neopixel.NeoPixel(LED_PIN, NUM_LEDS, brightness=0.2, auto_write=False, pixel_order=LED_ORDER)
+led_strip = neopixel.NeoPixel(LED_PIN, NUM_LEDS, brightness=0.35, auto_write=False, pixel_order=LED_ORDER)
 
 def hsv2rgb(h,s,v):
     return tuple(round(i * 255) for i in colorsys.hsv_to_rgb(h,s,v))
