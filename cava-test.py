@@ -45,6 +45,7 @@ def run():
                 break
             # sample = [i for i in struct.unpack(fmt, data)]  # raw values without norming
             sample = [i / bytenorm for i in struct.unpack(fmt, data)]
+            print(type(sample))
             print(sample)
 
 if __name__ == "__main__":
