@@ -4,7 +4,7 @@ import struct
 import subprocess
 import tempfile
 
-BARS_NUMBER = 30
+BARS_NUMBER = 100
 # OUTPUT_BIT_FORMAT = "8bit"
 OUTPUT_BIT_FORMAT = "16bit"
 # RAW_TARGET = "/tmp/cava.fifo"
