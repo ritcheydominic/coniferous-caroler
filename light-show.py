@@ -54,13 +54,14 @@ def run():
             data = source.read(chunk)
             if len(data) < chunk:
                 break
-            # sample_list = [i for i in struct.unpack(fmt, data)]  # raw values without norming
             sample_list = [i / bytenorm for i in struct.unpack(fmt, data)]
-            # print(sample_list)
-            # led_strip.fill((0, 0, 0))
+            avg = 0
+            for sample in sample_list:
+                avg += sample
+            avg /= BARS_NUMBER
             for sample_idx in range(BARS_NUMBER):
                 sample = sample_list[sample_idx]
-                rgb_color = hsv2rgb(sample, 1.0, 1.0)
+                rgb_color = hsv2rgb(sample, 1.0, avg)
                 for idx in range(NUM_LEDS // BARS_NUMBER):
                     led_idx = (sample_idx * (NUM_LEDS // BARS_NUMBER)) + idx
                     led_strip[led_idx] = rgb_color
