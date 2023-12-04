@@ -1,0 +1,52 @@
+digraph {
+    ratio = 0.7
+
+    subgraph cluster_spotify {
+        label="Spotify Network Speaker"
+        color="green"
+        style = "rounded"
+        "Spotifyd\nMusic Player" [shape=box, style=rounded, color=green]
+        "Pulseaudio\nAudio Server" [shape=box, style=rounded, color=green]
+        "ALSA\nAudio Driver" [shape=box, style=rounded, color=green]
+        "AUX\nSpeaker" [shape=box, style=rounded, color=green]
+    }
+
+    subgraph cluster_webapi {
+        label="Spotify Web API Client"
+        color="blue"
+        style = "rounded"
+        "Spotify OAuth\nAuthentication" [shape=box, style=rounded, color=blue]
+        "Spotipy Python\nClient" [shape=box, style=rounded, color=blue]
+        "Bluetooth MAC\nAddress to\nPlaylist Table" [shape=box, style=rounded, color=blue]
+        "pydbus\nBluetooth\nInterface" [shape=box, style=rounded, color=blue]
+        "User Playlists" [shape=box, style=rounded, color=blue]
+        "Virtual Queue\nPlaylist" [shape=box, style=rounded, color=blue]
+    }
+
+    subgraph cluster_fft {
+        label="FFT Audio Analysis"
+        color="red"
+        style = "rounded"
+        "CAVA\nVisualizer" [shape=box, style=rounded, color=red]
+        "Python\nLight Controller" [shape=box, style=rounded, color=red]
+        "Adafruit\nNeoPixel\nLibrary" [shape=box, style=rounded, color=red]
+        "RGB LED\nLight Strings" [shape=box, style=rounded, color=red]
+    }
+
+    "Spotifyd\nMusic Player" -> "Pulseaudio\nAudio Server" [color=green]
+    "Pulseaudio\nAudio Server" -> "ALSA\nAudio Driver" [color=green]
+    "ALSA\nAudio Driver" -> "AUX\nSpeaker" [color=green]
+
+    "Spotify OAuth\nAuthentication" -> "Spotipy Python\nClient" [color=blue]
+    "pydbus\nBluetooth\nInterface" -> "Bluetooth MAC\nAddress to\nPlaylist Table" [color=blue]
+    "Bluetooth MAC\nAddress to\nPlaylist Table" -> "Spotipy Python\nClient" [color=blue]
+    "Spotipy Python\nClient" -> "User Playlists" [color=blue]
+    "User Playlists" -> "Virtual Queue\nPlaylist" [color=blue]
+    "Virtual Queue\nPlaylist" -> "Spotipy Python\nClient" [color=blue]
+    "Spotipy Python\nClient" -> "Spotifyd\nMusic Player" [color=blue]
+
+    "Pulseaudio\nAudio Server" -> "CAVA\nVisualizer" [color=red]
+    "CAVA\nVisualizer" -> "Python\nLight Controller" [color=red]
+    "Python\nLight Controller" -> "Adafruit\nNeoPixel\nLibrary" [color=red]
+    "Adafruit\nNeoPixel\nLibrary" -> "RGB LED\nLight Strings" [color=red]
+}
